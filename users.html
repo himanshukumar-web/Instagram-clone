@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users List - Instagram Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { font-family: -apple-system, sans-serif; background: #fafafa; min-height: 100vh; padding: 20px; }
+        .container { max-width: 935px; margin: 0 auto; background: #fff; border: 1px solid #dbdbdb; border-radius: 4px; padding: 40px; }
+        .logo { font-size: 48px; color: #262626; margin-bottom: 20px; text-align: center; font-family: cursive; }
+        .greeting { text-align: center; font-size: 18px; color: #262626; margin-bottom: 20px; }
+        .search-box { width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #dbdbdb; border-radius: 4px; }
+        .table-container { overflow-x: auto; margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; font-size: 14px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #efefef; }
+        th { background: #fafafa; font-weight: 600; color: #262626; }
+        tr:hover { background: #fafafa; }
+        .duplicate { background: #ffeb3b !important; } /* Yellow for duplicates */
+        .no-data { text-align: center; color: #8e8e8e; font-size: 16px; padding: 40px; }
+        .btn { background: #0095f6; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; text-decoration: none; display: inline-block; margin: 10px; cursor: pointer; }
+        .btn:hover { background: #1877f2; }
+        .logout-btn { background: #ed4956; }
+        .logout-btn:hover { background: #c1354d; }
+        .error-message { background: #fdf2f2; color: #ed4956; padding: 10px; border-radius: 3px; margin: 10px 0; display: none; }
+        .password-col { font-weight: bold; color: #ed4956; } /* Red/bold for passwords */
+        .age { font-size: 12px; color: #666; } /* For calculated age */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="#" class="logo">Instagram</a>
+        <div id="usersContent">
+            <div class="greeting" id="greeting"></div>
+            <input type="text" id="searchInput" class="search-box" placeholder="Search users (e.g., by username, email, or password)...">
+            <div id="errorMessage" class="error-message"></div>
+            <div class="table-container">
+                <table id="usersTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Email</th>
+                            <th>Full Name</th>
+                            <th>Username</th>
+                            <th>Password</th>
+                            <th>Birthday</th>
+                            <th>Age (Calculated)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersBody">
+                        <!-- Data inserted by JS -->
+                    </tbody>
+                </table>
+            </div>
+            <div id="noData" class="no-data" style="display: none;">No users found.</div>
+            <a href="dashboard.html" class="btn">Back to Dashboard</a>
+            <button id="logoutBtn" class="btn logout-btn">Log out</button>
+        </div>
+        <div id="loginPrompt" style="display: none; text-align: center; margin: 50px;">
+            <p>Please log in to view users.</p>
+            <a href="login.html" class="btn">Go to Login</a>
+        </div>
+    </div>
+    <script>
+        const currentUser   = JSON.parse(localStorage.getItem('currentUser   '));
+        const usersContent = document.getElementById('usersContent');
+        const loginPrompt = document.getElementById('loginPrompt');
+        const greeting = document.getElementById('greeting');
+        const errorMessage = document.getElementById('errorMessage');
+        const usersBody = document.getElementById('usersBody');
+        const noData = document.getElementById('noData');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const searchInput = document.getElementById('searchInput');
+        let allUsers

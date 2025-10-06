@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Reset and base styles (similar to previous pages) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #fafafa;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Main container */
+        .main-container {
+            max-width: 935px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-top: 40px;
+        }
+
+        /* Left sidebar (placeholder for navigation) */
+        .left-sidebar {
+            width: 250px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #262626;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 8px 0;
+        }
+
+        .nav-link i {
+            font-size: 20px;
+            color: #0095f6;
+        }
+
+        .nav-link:hover {
+            color: #0095f6;
+        }
+
+        /* Center content (dashboard card) */
+        .center-content {
+            flex: 1;
+            max-width: 470px;
+            background: #fff;
+            border: 1px solid #dbdbdb;
+            border-radius: 4px;
+            padding: 40px 20px;
+            text-align: center;
+            margin: 0 20px;
+        }
+
+        .logo {
+            font-size: 48px;
+            font-family: 'Billabong', cursive;
+            color: #262626;
+            margin-bottom: 20px;
+        }
+
+        .user-greeting {
+            font-size: 28px;
+            font-weight: 300;
+            color: #262626;
+            margin-bottom: 10px;
+        }
+
+        .user-info {
+            font-size: 16px;
+            color: #8e8e8e;
+            margin-bottom: 30px;
+        }
+
+        .placeholder-feed {
+            font-size: 14px;
+            color: #8e8e8e;
+            border-top: 1px solid #efefef;
+            padding-top: 20px;
+        }
+
+        /* Right sidebar (placeholder for suggestions) */
+        .right-sidebar {
+            width: 250px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Buttons */
+        .btn {
+            background: #0095f6;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-weight: 600;
+            padding: 8px 16px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background: #1877f2;
+        }
+
+        .logout-btn {
+            background: #ed4956;
+            margin-top: 20px;
+        }
+
+        .logout-btn:hover {
+            background: #c1354d;
+        }
+
+        /* Footer (same as before) */
+        .footer {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            font-size: 12px;
+            color: #8e8e8e;
+            width: 100%;
+        }
+
+        .footer a {
+            color: #8e8e8e;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 875px) {
+            .main-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .left-sidebar, .right-sidebar {
+                display: none; /* Hide sidebars on mobile */
+            }
+
+            .center-content {
+                margin: 0;
+                width: 100%;
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Left sidebar: Navigation links -->
+        <div class="left-sidebar">
+            <a href="#" class="nav-link"><i class="fas fa-home"></i> Home</a>
+            <a href="#" class="nav-link"><i class="fas fa-search"></i> Search</a>
+            <a href="#" class="nav-link"><i class="fas fa-plus-square"></i> Create</a>
+            <a href="#" class="nav-link"><i class="fas fa-heart"></i> Activity</a>
+            <a href="#" class="nav-link"><i class="fas fa-user"></i> Profile</a>
+        </div>
+
+        <!-- Center: Dashboard content -->
+        <div class="center-content">
+            <a href="#" class="logo">Instagram</a>
+            <div id="userSection">
+                <div class="user-greeting">Welcome back!</div>
+                <div id="userInfo" class="user-info"></div>
+                <div class="placeholder-feed">
+                    Your feed will appear here. <br>
+                    <a href="#" class="btn">Explore Posts</a>
+                </div>
+            </div>
+            <div id="loginPrompt" style="display: none;">
+                <p style="color: #8e8e8e;">Please log in to continue.</p>
+                <a href="login.html" class="btn">Go to Login</a>
+            </div>
+            <button id="logoutBtn" class="btn logout-btn" style="display: none;">Log out</button>
+        </div>
+
+        <!-- Right sidebar: Suggestions (placeholder) -->
+        <div class="right-sidebar">
+            <div style="background: #fff; border: 1px solid #dbdbdb; border-radius: 4px; padding: 20px; text-align: center;">
+                <h3 style="font-size: 14px; color: #262626; margin-bottom: 10px;">Suggestions for you</h3>
+                <p style="font-size: 12px; color: #8e8e8e;">Follow people to see their posts.</p>
+                <a href="#" class="btn" style="font-size: 12px; padding: 5px 10px;">Find People</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <a href="#">About</a> • <a href="#">Help</a> • <a href="#">Press</a> • <a href="#">API</a> • 
+        <a href="#">Jobs</a> • <a href="#">Privacy</a> • <a href="#">Terms</a> • <a href="#">Top Accounts</a> • 
+        <a href="#">Locations</a> • <a href="#">Instagram Lite</a> • <a href="#">Contact Uploading & Non-Users</a>
+        <br><strong>© 2023 Instagram from Meta</strong>
+    </div>
+
+    <script>
+        // Check if user is logged in
+        const currentUser  = JSON.parse(localStorage.getItem('currentUser '));
+        const userSection = document.getElementById('userSection');
+        const loginPrompt = document.getElementById('loginPrompt');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const userInfo = document.getElementById('userInfo');
+
+        if (currentUser ) {
+            // Show user info
+            userInfo.textContent = `Hi, ${currentUser .fullName} (@${currentUser .username})`;
+            logoutBtn.style.display = 'inline-block';
+
+            // Logout handler
+            logoutBtn.addEventListener('click', function() {
+                localStorage.removeItem('currentUser ');
+                alert('Logged out successfully.');
+                window.location.href = 'login.html';
+            });
+        } else {
+            // Redirect to login if not logged in
+            userSection.style.display = 'none';
+            loginPrompt.style.display = 'block';
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 2000);
+        }

