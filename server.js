@@ -1,27 +1,34 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const fs = require('fs');
 const path = require('path');
-const { createObjectCsvWriter } = require('csv-writer');
-const { parse } = require('csv-parse/sync');
-const cors = require("cors");
+const fs = require('fs');
+const cors = require('cors');
 
 const app = express();
-const port = process.env.PORT || 3000;  // ✅ Vercel ke liye correct
+const port = process.env.PORT || 3000;
 
-app.use(cors());
-app.use(cors({ origin: "https://instagram-clone-nine-kappa.vercel.app" }));
+// ✅ CORS fix
+app.use(cors({
+  origin: 'https://instagram-clone-nine-kappa.vercel.app',
+  methods: ['GET', 'POST'],
+  credentials: true
+}));
 
-// Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname));
 
-// ... (tumhara saara API code same rahe)
+// Example test route
+app.get('/api/hello', (req, res) => {
+  res.json({ message: 'Backend is working!' });
+});
 
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'login.html')));
+// ✅ Serve frontend
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'login.html'));
+});
 
-// ✅ Sirf ek listen rakhna
+// ✅ Single app.listen
 app.listen(port, () => {
-    console.log(`✅ Server running on port ${port}`);
+  console.log(`Server running on port ${port}`);
 });
